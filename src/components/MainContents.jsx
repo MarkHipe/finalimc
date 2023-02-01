@@ -36,38 +36,7 @@ import { useEffect } from "react";
 
 SwiperCore.use([Navigation, Pagination, Controller, Thumbs, Autoplay]);
 
-const member = [
-  {
-    id: 0,
-    name: "Lee Kyoungyoon",
-    images:
-      "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/acne-1624642769.jpg?crop=0.500xw:1.00xh;0,0&resize=640:*",
-  },
-  {
-    id: 1,
-    name: "Kim Sehyeon",
-    images:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbw7N7R4KoscLIrqNHw7eab_iO130K4LDWOw&usqp=CAU",
-  },
-  {
-    id: 2,
-    name: "Jeon Mingyu",
-    images:
-      "https://www.colgate.com/content/dam/cp-sites/oral-care/oral-care-center-relaunch/en-us/general/brands/colgate-total-12-regimen.jpg",
-  },
-  {
-    id: 3,
-    name: "Jang Munik",
-    images:
-      "https://jnj-content-lab.brightspotcdn.com/dims4/default/ed3caa1/2147483647/strip/true/crop/1079x1079+0+0/resize/360x360!/quality/90/?url=http%3A%2F%2Fjnj-brightspot.s3.amazonaws.com%2F99%2Fd8%2F3094caf34f7ea52a0e3f375d3841%2Fproducts-landinage-page-silhouette-pharma.jpg",
-  },
-  {
-    id: 4,
-    name: "Park Jaechan",
-    images:
-      "http://images.summitmedia-digital.com/preview/images/2021/03/05/most-expensive-skincare-nm.jpg",
-  },
-];
+
 const testimonials = [
   {
     label: "Valued Customer",
