@@ -1,11 +1,4 @@
-
-import React, {
-  useState,
-  useCallback,
-  forwardRef,
-  useImperativeHandle,
-  useEffect,
-} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const PLAY_STATES = {
@@ -74,45 +67,15 @@ const MinitteVideoPlayer = React.forwardRef(
     return (
       <Con style={{ position: "relative" }}>
         <div className="m-video-wrapper">
-          <video controls src={props.vid} muted={muted} ref={videoRef} poster={props.thumbnail} autoPlay={true}/>
+          <video
+            controls
+            src={props.vid}
+            muted={muted}
+            ref={videoRef}
+            poster={props.thumbnail}
+            autoPlay={true}
+          />
         </div>
-        {/* play pause button */}
-
-        {playState === PLAY_STATES.LOADING ? (
-          <IconButton className="playerBtn">
-            <Icon.Loader />
-          </IconButton>
-        ) : playState === PLAY_STATES.PLAYING ? (
-          <IconButton
-            className="playerBtn"
-            onClick={() => videoHandlers("pause")}
-          >
-            <Icon.PauseCircle />
-          </IconButton>
-        ) : playState === PLAY_STATES.PAUSED ? (
-          <IconButton
-            className="playerBtn"
-            onClick={() => videoHandlers("play")}
-          >
-            <Icon.PlayCircle />
-          </IconButton>
-        ) : playState === PLAY_STATES.ENDED ? (
-          <IconButton
-            className="playerBtn"
-            onClick={() => videoHandlers("play")}
-          >
-            <Icon.Repeat />
-          </IconButton>
-        ) : playState === PLAY_STATES.READY ? (
-          <IconButton
-            className="playerBtn"
-            onClick={() => videoHandlers("play")}
-          >
-            <Icon.PlayCircle />
-          </IconButton>
-        ) : null}
-
-        {/* play pause button */}
       </Con>
     );
   }
@@ -127,7 +90,7 @@ const Con = styled.div`
   height: 100vh; */
   & video {
     width: 600px;
-    @media (max-width: 768px){
+    @media (max-width: 768px) {
       width: 90vw;
     }
     /* margin: auto; */
