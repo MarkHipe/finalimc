@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import IMC from "../../assets/IMC.png";
 import { IoDiamond } from "react-icons/io5";
-import { useSpring, animated } from "react-spring";
 import CountUp from "react-countup";
 import { InView } from "react-intersection-observer";
 import { GrUserWorker } from "react-icons/gr";
