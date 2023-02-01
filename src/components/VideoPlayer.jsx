@@ -6,9 +6,6 @@ import React, {
   useImperativeHandle,
   useEffect,
 } from "react";
-// import "./MinitteVideoPlayerCss.css";
-import * as Icon from "react-feather";
-import { IconButton } from "@material-ui/core";
 import styled from "styled-components";
 
 const PLAY_STATES = {
