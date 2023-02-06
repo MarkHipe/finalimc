@@ -169,7 +169,7 @@ const About = () => {
         <div className="wrapper2">
           <h1>WHY WE EXIST</h1>
           <p>
-            To advance and develop the shipping indutry and answer the call for
+            To advance and develop the shipping industry and answer the call for
             increasing demand in the market
           </p>
         </div>
