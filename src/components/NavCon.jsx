@@ -137,6 +137,9 @@ const Con = styled.div`
       justify-content: center;
       align-items: center;
       color: #484848;
+      & a{
+        color: #1f1f1f;
+      }
       @media (max-width: 768px) {
       display: none;
     }

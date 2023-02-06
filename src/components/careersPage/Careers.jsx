@@ -211,11 +211,12 @@ const Con = styled.div`
           & h6 {
             color: #000000;
             font-weight: 600;
+            font-size: 16px;
             margin: 10px auto;
           }
           & h2 {
             font-weight: 400;
-            font-size: 10px;
+            font-size: 13px;
             color: #5e5e5e;
           }
           & p {
@@ -226,7 +227,7 @@ const Con = styled.div`
           & h5 {
             display: flex;
             margin-top: 0;
-            font-size: 10px;
+            font-size: 12px;
             color: #c78b22;
 
             & .icon {

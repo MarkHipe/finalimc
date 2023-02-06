@@ -65,7 +65,7 @@ const Footer = () => {
             </p>
             <p
               onClick={() => {
-                navigate("/carees");
+                navigate("/careers");
               }}
             >
               Careers
@@ -221,6 +221,8 @@ const Con = styled.div`
         color: #c6dae4;
         margin-top: -3px;
         cursor: pointer;
+        text-align: justify;
+        line-height: 20px;
         &:hover {
           color: #c58803;
         }

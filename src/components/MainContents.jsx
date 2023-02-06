@@ -36,7 +36,6 @@ import { useEffect } from "react";
 
 SwiperCore.use([Navigation, Pagination, Controller, Thumbs, Autoplay]);
 
-
 const testimonials = [
   {
     label: "Valued Customer",
@@ -67,6 +66,7 @@ const MainContents = ({ actives }) => {
   const navigate = useNavigate();
   const [playVid, setplayVid] = useState(false);
   const top = useRef(null);
+  const [hover, sethover] = useState(false);
   useEffect(() => {
     if (top && top.current) {
       const executeScroll = (top) =>
@@ -110,6 +110,23 @@ const MainContents = ({ actives }) => {
               src={Hero1}
               alt=""
             />
+            <div className="details2">
+              <h1>
+                Assuring You of Our <br /> Quality Service{" "}
+              </h1>
+              <p>
+                We are offering a sea shipment services across the country with
+                most efficient and economical cost. We assure that your cargoes
+                arrive on time on port of destination with care
+              </p>
+              <button
+                onClick={() => {
+                  navigate("/about");
+                }}
+              >
+                Read More
+              </button>
+            </div>
           </SwiperSlide>
           <SwiperSlide className="perSlide" key="">
             <img
@@ -244,11 +261,19 @@ const MainContents = ({ actives }) => {
                   navigate("services");
                 }}
               >
-                OUR SERVICES <BsArrowRight />
+                OUR SERVICES <BsArrowRight className="icon" />
               </h5>
             </div>
           </div>
-          <div className="card">
+          <div
+            className="card"
+            onMouseOver={() => {
+              sethover("loose");
+            }}
+            onMouseLeave={() => {
+              sethover(false);
+            }}
+          >
             {" "}
             <div className="header">
               <img src={cargo} />
@@ -259,8 +284,23 @@ const MainContents = ({ actives }) => {
 
               <p>A loose cargo load, also known as an LCL,...</p>
             </div>
+            {hover === "loose" ? (
+              <img
+                className="float"
+                src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231948/services/LOOSE_CARGO1_k06lbe.png"
+                alt=""
+              />
+            ) : null}
           </div>
-          <div className="card">
+          <div
+            className="card"
+            onMouseOver={() => {
+              sethover("rolling");
+            }}
+            onMouseLeave={() => {
+              sethover(false);
+            }}
+          >
             {" "}
             <div className="header">
               <img src={cargo} />
@@ -271,8 +311,23 @@ const MainContents = ({ actives }) => {
 
               <p>IMC moves vehicles or trucksFrom the part of the origin...</p>
             </div>
+            {hover === "rolling" ? (
+              <img
+                className="float"
+                src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231950/services/ROLLING_CARGO_2_o6mwtw.png"
+                alt=""
+              />
+            ) : null}
           </div>
-          <div className="card">
+          <div
+            className="card"
+            onMouseOver={() => {
+              sethover("dredging");
+            }}
+            onMouseLeave={() => {
+              sethover(false);
+            }}
+          >
             {" "}
             <div className="header">
               <img src={cargo} />
@@ -286,8 +341,23 @@ const MainContents = ({ actives }) => {
                 dykes, and...
               </p>
             </div>
+            {hover === "dredging" ? (
+              <img
+                className="float"
+                src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231942/services/DREDGER_VESSEL_OR_DREDGING_WORKS_qezocc.jpg"
+                alt=""
+              />
+            ) : null}
           </div>
-          <div className="card">
+          <div
+            className="card"
+            onMouseOver={() => {
+              sethover("Crane");
+            }}
+            onMouseLeave={() => {
+              sethover(false);
+            }}
+          >
             {" "}
             <div className="header">
               <img src={cargo} />
@@ -298,8 +368,23 @@ const MainContents = ({ actives }) => {
 
               <p>When a weight is put above a pile, it releases...</p>
             </div>
+            {hover === "Crane" ? (
+              <img
+                className="float"
+                src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231958/services/PILES_3_apem0v.png"
+                alt=""
+              />
+            ) : null}
           </div>
-          <div className="card">
+          <div
+            className="card"
+            onMouseOver={() => {
+              sethover("bulks");
+            }}
+            onMouseLeave={() => {
+              sethover(false);
+            }}
+          >
             {" "}
             <div className="header">
               <img src={cargo} />
@@ -310,6 +395,13 @@ const MainContents = ({ actives }) => {
 
               <p>Any construction, be a tiny structure, a road, or...</p>
             </div>
+            {hover === "bulks" ? (
+              <img
+                className="float"
+                src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231849/services/AGGREGATES_1_kytwio.png"
+                alt=""
+              />
+            ) : null}
           </div>
         </div>
       </div>
@@ -471,6 +563,7 @@ const MainContents = ({ actives }) => {
               spaceBetween={30}
               // pagination={{ clickable: true }}
               className="swiper"
+              autoplay={{ duration: 1 }}
               //  centeredSlides={true}
               breakpoints={{
                 1: { slidesPerView: 1 },
@@ -527,14 +620,15 @@ const MainContents = ({ actives }) => {
               pagination={{ clickable: true }}
               className="swiper"
               //  centeredSlides={true}
+              autoplay={{ duration: 1 }}
               breakpoints={{
                 1: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },
                 //1200: { slidesPerView: 3 },
               }}
-              onBeforeInit={(swiper) => {
-                swiperRef.current = swiper;
-              }}
+              // onBeforeInit={(swiper) => {
+              //   swiperRef.current = swiper;
+              // }}
             >
               {testimonials.map((test, i) => {
                 return (
@@ -688,9 +782,56 @@ const Con = styled.div`
       right: 10%;
       font-size: 2rem;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      & p {
+        font-size: 14px;
+      }
+      & button {
+        border: none;
+        padding: 15px 20px;
+        border-radius: 20px;
+        color: #fff;
+        background-color: #c78b22;
+      }
       color: #fff;
       @media (max-width: 768px) {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+        /* text-align:center; */
+        right: 2%;
+        top: 8rem;
+      }
+    }
+    & .details2 {
+      position: absolute;
+      z-index: 90;
+      top: 10rem;
+      width: 100%;
+      text-align: left;
+      left: 10%;
+      font-size: 2rem;
+      word-wrap: break-word;
+      & h1 {
+        color: #1a1446;
+      }
+      & p {
+        text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.3);
+        font-size: 14px;
+        width: 60vw;
+        line-height: 24px;
+      }
+      & button {
+        border: none;
+        padding: 15px 20px;
+        border-radius: 20px;
+        color: #fff;
+        background-color: #c78b22;
+        cursor: pointer;
+        &:hover {
+          background-color: #8a5b0b;
+        }
+      }
+      color: #fff;
+      @media (max-width: 768px) {
+        font-size: 1rem;
         /* text-align:center; */
         right: 2%;
       }
@@ -893,8 +1034,28 @@ const Con = styled.div`
         height: 170px;
         width: 270px;
         border: 1px solid #9999992f;
-
+        position: relative;
         padding: 0 1rem;
+        overflow: hidden;
+        cursor: pointer;
+        & img.float {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          object-fit: cover;
+          height: 100%;
+          animation: pop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+          @keyframes pop {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              transform: scale(1.1);
+              opacity: 1;
+            }
+          }
+        }
         & .header {
           height: 50px;
           display: flex;
@@ -923,6 +1084,21 @@ const Con = styled.div`
             font-size: 0.7rem !important;
             color: #fff !important;
             cursor: pointer;
+            & .icon {
+              animation: side-slide 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+                infinite both;
+              @keyframes side-slide {
+                0% {
+                  transform: translate(0px);
+                }
+                50% {
+                  transform: translate(10px);
+                }
+                100% {
+                  transform: translate(0px);
+                }
+              }
+            }
           }
           & h4 {
             font-size: 0.9rem;
@@ -1115,9 +1291,26 @@ const Con = styled.div`
         margin-top: 1rem;
         display: flex;
         cursor: pointer;
+        &:hover{
+        background-color: #a87112;
+
+        }
         & .icon {
           font-size: 1rem;
           margin: auto 10px;
+          animation: side-slide 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite
+            both;
+          @keyframes side-slide {
+            0% {
+              transform: translate(0px);
+            }
+            50% {
+              transform: translate(10px);
+            }
+            100% {
+              transform: translate(0px);
+            }
+          }
         }
       }
     }
@@ -1162,6 +1355,23 @@ const Con = styled.div`
           & .card {
             border: 1px solid #eee;
             width: 300px;
+            &:hover{
+              & .icon{
+                animation: side-slide 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+                    infinite both;
+                  @keyframes side-slide {
+                    0% {
+                      transform: translate(0px);
+                    }
+                    50% {
+                      transform: translate(10px);
+                    }
+                    100% {
+                      transform: translate(0px);
+                    }
+                  }
+              }
+            }
             & img {
               height: 200px;
               width: 100%;
@@ -1211,6 +1421,7 @@ const Con = styled.div`
                 color: #1a1446;
                 & .icon {
                   margin-left: 0.5rem;
+                 
                 }
               }
             }

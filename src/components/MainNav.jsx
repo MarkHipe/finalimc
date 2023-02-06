@@ -152,6 +152,9 @@ const Con = styled.div`
       @media (max-width: 768px) {
         display: none;
       }
+      & a{
+        color: #1f1f1f;
+      }
       & .icon {
         margin: 0 5px;
         cursor: pointer;

@@ -10,14 +10,12 @@ import { useRef } from "react";
 const NewsNUpdate = () => {
   const top = useRef(null);
   useEffect(() => {
- 
-      if (top && top.current) {
-        const executeScroll = (top) =>
-          top.current.scrollIntoView({ behavior: "smooth" });
-        executeScroll(top);
-        // useMountEffect(executeScroll); // Scroll on mount
-      }
-   
+    if (top && top.current) {
+      const executeScroll = (top) =>
+        top.current.scrollIntoView({ behavior: "smooth" });
+      executeScroll(top);
+      // useMountEffect(executeScroll); // Scroll on mount
+    }
   }, []);
   return (
     <Con ref={top}>
@@ -43,19 +41,16 @@ const NewsNUpdate = () => {
             News and Update
           </Link>
         </div>
-        <h1>News and Update</h1>
+        <h1>Corporate Social Activities</h1>
       </div>
       <div className="wrapper">
         {news.map((newsItem, i) => {
           return (
             <div className="card">
-              <img
-                src={newsItem.img}
-                alt={newsItem.title}
-              />
+              <img src={newsItem.img} alt={newsItem.title} />
               <div className="date">
-                <span>08</span>
-                <span>FEB</span>
+                {/* <span>08</span>
+                <span>FEB</span> */}
               </div>
               <div className="label">
                 <h6>By {newsItem.author}</h6>
@@ -145,7 +140,7 @@ const Con = styled.div`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    @media (min-width:1200px){
+    @media (min-width: 1200px) {
       width: 60%;
     }
     & .card {
@@ -201,6 +196,19 @@ const Con = styled.div`
           color: #1a1446;
           & .icon {
             margin-left: 0.5rem;
+            animation: side-slide 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+              infinite both;
+            @keyframes side-slide {
+              0% {
+                transform: translate(0px);
+              }
+              50% {
+                transform: translate(10px);
+              }
+              100% {
+                transform: translate(0px);
+              }
+            }
           }
         }
       }

@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { TfiArrowLeft, TfiArrowRight } from "react-icons/tfi";
 import Hero2 from "../../assets/hero-section/17 edited.jpg";
 import IMG1 from "../../assets/IMC164.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import IMC from "../../assets/IMC.png";
 import { IoDiamond } from "react-icons/io5";
@@ -68,6 +68,7 @@ const About = () => {
   var speed = 10;
   const [inview, setinview] = useState(false);
   const top = useRef(null);
+  const navigate = useNavigate()
   useEffect(() => {
     if (top && top.current) {
       const executeScroll = (top) =>
@@ -232,6 +233,7 @@ const About = () => {
           //   pagination={{ clickable: true }}
           centeredSlides={true}
           // navigation
+          autoplay={{duration:2.5}}
           style={{ height: "auto", width: "auto" }}
           className="swiper"
           onSlideChange={(swiper) => {
@@ -271,6 +273,7 @@ const About = () => {
           //   pagination={{ clickable: true }}
           centeredSlides={true}
           // navigation
+          autoplay={{duration:1}}
           style={{ height: "auto", width: "auto" }}
           className="swipers"
           onBeforeInit={(swiper) => {
@@ -311,7 +314,7 @@ const About = () => {
                       <CountUp
                         start={0}
                         end={565}
-                        duration={3}
+                        duration={4}
                         separator=" "
                         decimals={0}
                         decimal="."
@@ -340,7 +343,7 @@ const About = () => {
                         style={{
                           height: "13%",
                           animation:
-                            " slide-top-13 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both",
+                            " slide-top-13 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both",
                         }}
                       >
                         <span>13%</span>
@@ -355,7 +358,7 @@ const About = () => {
                         style={{
                           height: "78%",
                           animation:
-                            " slide-top-78 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both",
+                            " slide-top-78 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both",
                         }}
                       >
                         <span>78%</span>
@@ -370,7 +373,7 @@ const About = () => {
                         style={{
                           height: "9%",
                           animation:
-                            " slide-top-9 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both",
+                            " slide-top-9 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both",
                         }}
                       >
                         <span>9%</span>
@@ -385,7 +388,7 @@ const About = () => {
       </div>
       <div className="banner">
         <h4>" LOGISTICS FOR THE REAL WORLD "</h4>
-        <span>
+        <span onClick={()=>{navigate("/contactus")}}>
           MAKE AN APPOINTMENT <BsArrowRight className="icon" />
         </span>
       </div>

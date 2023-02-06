@@ -180,6 +180,7 @@ const Con = styled.div`
       & .icon {
         color: #fff;
         margin: 0 10px;
+        
       }
     }
   }

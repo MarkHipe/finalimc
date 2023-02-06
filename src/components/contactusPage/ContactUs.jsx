@@ -1,28 +1,32 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { FiPhoneCall, FiClock, FiMail } from "react-icons/fi";
 import IMC from "../../assets/IMC.png";
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { AiFillFileText } from "react-icons/ai";
+import { AiFillCheckCircle, AiFillFileText } from "react-icons/ai";
 import Hero2 from "../../assets/hero-section/17 edited.jpg";
 import emailjs from "@emailjs/browser";
 import { useEffect } from "react";
 // import env from "react-dotenv";
 const ContactUs = () => {
   const form = useRef();
-  const token = import.meta.env.NODE_JS;
-  console.log(token);
   const top = useRef(null);
+  const [success, setsuccess] = useState(false);
+
+  const [name, setname] = useState("");
+  const [number, setnumber] = useState("");
+  const [company, setcompany] = useState("");
+  const [email, setemail] = useState("");
+  const [message, setmessage] = useState("");
+
   useEffect(() => {
- 
-      if (top && top.current) {
-        const executeScroll = (top) =>
-          top.current.scrollIntoView({ behavior: "smooth" });
-        executeScroll(top);
-        // useMountEffect(executeScroll); // Scroll on mount
-      }
-   
+    if (top && top.current) {
+      const executeScroll = (top) =>
+        top.current.scrollIntoView({ behavior: "smooth" });
+      executeScroll(top);
+      // useMountEffect(executeScroll); // Scroll on mount
+    }
   }, []);
   const sendEmail = (e) => {
     e.preventDefault();
@@ -30,7 +34,7 @@ const ContactUs = () => {
     emailjs
       .sendForm(
         "service_zzobcjs",
-        "template_2knrk2d",
+        "template_q9hx72j",
         form.current,
         "2ES5K8EJE6kR47XYQ"
       )
@@ -38,11 +42,19 @@ const ContactUs = () => {
         (result) => {
           console.log(result.text);
           console.log("message sent");
+          if (result.text === "OK") {
+            setsuccess(true);
+          }
         },
         (error) => {
           console.log(error.text);
         }
       );
+    setname("");
+    setemail("");
+    setcompany("");
+    setnumber("");
+    setmessage("");
   };
   return (
     <Con ref={top}>
@@ -110,21 +122,62 @@ const ContactUs = () => {
           <div className="formCon">
             <form ref={form} onSubmit={sendEmail}>
               <div className="half">
-                <input name="user_name" type="text" placeholder="Name" />
-                <input name="user_email" type="email" placeholder="Email" />
+                <input
+                  name="user_name"
+                  type="text"
+                  placeholder="Name"
+                  onChange={(event) => setname(event.target.value)}
+                  value={name}
+                />
+                <input
+                  name="user_email"
+                  type="email"
+                  placeholder="Email"
+                  onChange={(event) => setemail(event.target.value)}
+                  value={email}
+                />
               </div>
               <div className="half">
-                <input name="user_number" type="text" placeholder="Phone" />
-                <input name="user_company" type="text" placeholder="Company" />
+                <input
+                  name="user_number"
+                  type="text"
+                  placeholder="Phone"
+                  onChange={(event) => setnumber(event.target.value)}
+                  value={number}
+                />
+                <input
+                  name="user_company"
+                  type="text"
+                  placeholder="Company"
+                  onChange={(event) => setcompany(event.target.value)}
+                  value={company}
+                />
               </div>
+              <input
+                type="text"
+                name="from_name"
+                hidden={true}
+                value="IMC Website"
+              />
+              <input type="text" name="to_name" hidden={true} value="IMC" />
+
               <textarea
                 name="message"
                 id=""
                 cols="30"
                 rows="6"
                 placeholder="Message"
+                onChange={(event) => setmessage(event.target.value)}
+                value={message}
               ></textarea>
-              <input type="submit" value="SUBMIT NOW" />
+
+              <input className="button" type="submit" value="SUBMIT NOW" />
+              {success ? (
+                <p>
+                  Message Sent Successfully{" "}
+                  <AiFillCheckCircle style={{ color: "#7bda00" }} />
+                </p>
+              ) : null}
             </form>
           </div>
         </div>
@@ -135,7 +188,7 @@ const ContactUs = () => {
           scrolling="no"
           marginheight="0"
           marginwidth="0"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.5667246310827!2d121.00529723467848!3d14.566752198992006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c99e72a880a9%3A0x27268a38417e5bd4!2sThe%20Mondrian!5e0!3m2!1sen!2sph!4v1674711180415!5m2!1sen!2sph"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61785.01760195091!2d120.94545583125!3d14.566930599999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9845f69b05f%3A0x6ddfb27268e26969!2sPMI%20Tower!5e0!3m2!1sen!2sph!4v1675243688246!5m2!1sen!2sph"
         ></iframe>
       </div>
     </Con>
@@ -276,7 +329,7 @@ const Con = styled.div`
           width: 100%;
           background-color: #fff;
           & img {
-            height: 60px;
+            height: 90px;
           }
         }
       }
@@ -301,13 +354,20 @@ const Con = styled.div`
           & .half {
             display: flex;
           }
-          & button {
+          & .button {
             background-color: #c78b22;
             color: #fff;
             padding: 13px;
             font-size: 10px;
             border: none;
             margin-left: 10px;
+            cursor: pointer;
+            &:hover {
+              background-color: #915e08;
+            }
+          }
+          & p {
+            font-size: 13px;
           }
         }
       }

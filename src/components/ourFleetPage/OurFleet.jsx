@@ -14,18 +14,15 @@ const OurFleet = () => {
   const top = useRef(null);
   const top1 = useRef(null);
   useEffect(() => {
- 
-      if (top1 && top1.current) {
-        const executeScroll = (top) =>
-          top1.current.scrollIntoView({ behavior: "smooth" });
-        executeScroll(top1);
-        // useMountEffect(executeScroll); // Scroll on mount
-      }
-   
+    if (top1 && top1.current) {
+      const executeScroll = (top) =>
+        top1.current.scrollIntoView({ behavior: "smooth" });
+      executeScroll(top1);
+      // useMountEffect(executeScroll); // Scroll on mount
+    }
   }, []);
   useEffect(() => {
     if (selected) {
-   
       if (top && top.current) {
         const executeScroll = (top) =>
           top.current.scrollIntoView({ behavior: "smooth" });
@@ -82,65 +79,65 @@ const OurFleet = () => {
             <img src={Hero2} alt="" />
           </div>
         </div>
-        <h1  ref={top}>OUR FLEET</h1 >
+        <h1 ref={top}>OUR FLEET</h1>
         {!selected ? (
-        <div className="tabCon" >
-          <span
-            className={tabActive === "view" ? "active" : ""}
-            onClick={() => {
-              settabActive("view");
-              setshow(vessels);
-            }}
-          >
-            View All
-          </span>
-          <span
-            className={tabActive === "barge" ? "active" : ""}
-            onClick={() => {
-              settabActive("barge");
-              setshow(vessels.filter((o) => o.type === "BARGE"));
-            }}
-          >
-            Barge
-          </span>
-          <span
-            className={tabActive === "landing" ? "active" : ""}
-            onClick={() => {
-              settabActive("landing");
-              setshow(vessels.filter((o) => o.type === "Landing Craft Tank"));
-            }}
-          >
-            Landing Craft Tank
-          </span>
-          <span
-            className={tabActive === "tug" ? "active" : ""}
-            onClick={() => {
-              settabActive("tug");
-              setshow(vessels.filter((o) => o.type === "MTUG/TUGBOAT"));
-            }}
-          >
-            Tug Boats
-          </span>
-          <span
-            className={tabActive === "dredger" ? "active" : ""}
-            onClick={() => {
-              settabActive("dredger");
-              setshow(null);
-            }}
-          >
-            Dredger
-          </span>
-          <span
-            className={tabActive === "bulk" ? "active" : ""}
-            onClick={() => {
-              settabActive("bulk");
-              setshow(null);
-            }}
-          >
-            Bulk Carriers
-          </span>
-        </div>
-          ) : null}
+          <div className="tabCon">
+            <span
+              className={tabActive === "view" ? "active" : ""}
+              onClick={() => {
+                settabActive("view");
+                setshow(vessels);
+              }}
+            >
+              View All
+            </span>
+            <span
+              className={tabActive === "barge" ? "active" : ""}
+              onClick={() => {
+                settabActive("barge");
+                setshow(vessels.filter((o) => o.type === "BARGE"));
+              }}
+            >
+              Barge
+            </span>
+            <span
+              className={tabActive === "landing" ? "active" : ""}
+              onClick={() => {
+                settabActive("landing");
+                setshow(vessels.filter((o) => o.type === "Landing Craft Tank"));
+              }}
+            >
+              Landing Craft Tank
+            </span>
+            <span
+              className={tabActive === "tug" ? "active" : ""}
+              onClick={() => {
+                settabActive("tug");
+                setshow(vessels.filter((o) => o.type === "MTUG/TUGBOAT"));
+              }}
+            >
+              Tug Boats
+            </span>
+            <span
+              className={tabActive === "dredger" ? "active" : ""}
+              onClick={() => {
+                settabActive("dredger");
+                setshow(null);
+              }}
+            >
+              Dredger
+            </span>
+            <span
+              className={tabActive === "bulk" ? "active" : ""}
+              onClick={() => {
+                settabActive("bulk");
+                setshow(null);
+              }}
+            >
+              Bulk Carriers
+            </span>
+          </div>
+        ) : null}
         {selected ? (
           <span
             className="backBtn"
@@ -148,11 +145,11 @@ const OurFleet = () => {
               setselected("");
             }}
           >
-            <BsArrowLeft /> Back to List
+            <BsArrowLeft className="icon" /> Back to List
           </span>
         ) : null}
         {selected ? (
-          <div  className="wrapDetails" id="wrapDetails">
+          <div className="wrapDetails" id="wrapDetails">
             <div className="left">
               <img src={selected?.img} alt="" />
             </div>
@@ -226,11 +223,26 @@ const Con = styled.div`
   & .backBtn {
     cursor: pointer;
     color: #c78b22;
-    font-size: 11px;
+    font-size: 12px;
     margin-top: 2rem;
     display: flex;
     align-self: flex-start;
     margin-left: 3rem;
+    & .icon {
+      animation: side-slide 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite
+        both;
+      @keyframes side-slide {
+        0% {
+          transform: translate(0px);
+        }
+        50% {
+          transform: translateX(-10px);
+        }
+        100% {
+          transform: translate(0px);
+        }
+      }
+    }
   }
   & .wrapDetails {
     display: flex;
@@ -238,7 +250,7 @@ const Con = styled.div`
     align-items: center;
     flex-wrap: wrap;
     padding: 3rem 0;
-   
+
     & .left {
       /* width: 50%; */
       display: flex;
@@ -267,11 +279,11 @@ const Con = styled.div`
         border-bottom: 1px solid #ccc;
         & h1 {
           font-size: 1.2rem;
-          margin: 5px0;
+          margin: 5px 0;
         }
       }
       & h4 {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
         margin: 5px 0;
         color: #242424;
       }
@@ -279,6 +291,7 @@ const Con = styled.div`
         text-transform: uppercase;
         font-weight: 600;
         margin: 5px 0;
+        font-size: 0.9rem;
         color: #383838;
       }
       & .list {
@@ -289,13 +302,13 @@ const Con = styled.div`
           li {
             text-decoration: none;
             white-space: nowrap;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             display: flex;
             justify-content: space;
             align-items: center;
             height: 23px;
             & span {
-              font-size: 0.7rem;
+              font-size: 0.8rem;
               margin-right: 10px;
               font-weight: 600;
               width: 60px;
@@ -395,7 +408,7 @@ const Con = styled.div`
         & h6 {
         }
         & p {
-          font-size: 11px;
+          font-size: 13px;
           line-height: 18px;
           color: #838383;
         }
@@ -405,7 +418,7 @@ const Con = styled.div`
           border: none;
           padding: 10px 20px;
           border-radius: 20px;
-          font-size: 10px;
+          font-size: 12px;
         }
       }
       & .right {
@@ -453,7 +466,23 @@ const Con = styled.div`
         border: 1px solid #eee;
         width: 200px;
         margin: 10px 5px;
-
+        &:hover {
+          & h5 .icon {
+            animation: side-slide 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+              infinite both;
+            @keyframes side-slide {
+              0% {
+                transform: translate(0px);
+              }
+              50% {
+                transform: translate(10px);
+              }
+              100% {
+                transform: translate(0px);
+              }
+            }
+          }
+        }
         & img {
           height: 130px;
           width: 100%;
@@ -487,7 +516,7 @@ const Con = styled.div`
           }
           & h2 {
             font-weight: 400;
-            font-size: 10px;
+            font-size: 13px;
             color: #c78b22;
           }
           & p {
@@ -498,7 +527,7 @@ const Con = styled.div`
           & h5 {
             display: flex;
             margin-top: 0;
-            font-size: 8px;
+            font-size: 11px;
             cursor: pointer;
             & .icon {
               margin-left: 0.5rem;
