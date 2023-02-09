@@ -122,7 +122,7 @@ const OurFleet = () => {
               className={tabActive === "dredger" ? "active" : ""}
               onClick={() => {
                 settabActive("dredger");
-                setshow(null);
+                setshow(vessels.filter((o) => o.type === "DREDGER"));
               }}
             >
               Dredger
@@ -131,7 +131,7 @@ const OurFleet = () => {
               className={tabActive === "bulk" ? "active" : ""}
               onClick={() => {
                 settabActive("bulk");
-                setshow(null);
+                setshow(vessels.filter((o) => o.type === "BULK CARRIER"));
               }}
             >
               Bulk Carriers

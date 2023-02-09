@@ -33,6 +33,7 @@ import { useNavigate } from "react-router-dom";
 import Thumbnail from "../assets/IMC164.jpg";
 import { news } from "./newsNUpdatePage/news";
 import { useEffect } from "react";
+import { InView } from "react-intersection-observer";
 
 SwiperCore.use([Navigation, Pagination, Controller, Thumbs, Autoplay]);
 
@@ -60,13 +61,22 @@ const testimonials = [
 ];
 //gsap.registerPlugin( ScrollSmoother);
 const MainContents = ({ actives }) => {
-  const [active, setactive] = useState(0);
+  const [active, setactive] = useState("1");
   const swiperRef = useRef();
   const [videoPop, setvideoPop] = useState("");
   const navigate = useNavigate();
   const [playVid, setplayVid] = useState(false);
   const top = useRef(null);
   const [hover, sethover] = useState(false);
+  const [inviewInfo, setinviewInfo] = useState(false);
+  const [inviewPort, setinviewPort] = useState(false);
+  const [inviewServe, setinviewServe] = useState(false);
+  const [inviewFind, setinviewFind] = useState(false);
+  const [inviewLogi, setinviewLogi] = useState(false);
+  const [inviewNews, setinviewNews] = useState(false);
+  const [inviewTest, setinviewTest] = useState(false);
+  const [inviewComp, setinviewComp] = useState(false);
+  console.log(active);
   useEffect(() => {
     if (top && top.current) {
       const executeScroll = (top) =>
@@ -97,10 +107,13 @@ const MainContents = ({ actives }) => {
           style={{ height: "auto", width: "auto" }}
           className="swiper"
           autoplay
+          onSlideChange={(swiper) => {
+           active==="1"? setactive("2"):setactive("1")
+          }}
         >
           <SwiperSlide className="perSlide" key="">
             <img
-              className="img"
+              className={active === "2" ? "img active" : "img"}
               style={{
                 height: "auto",
                 width: "100%",
@@ -130,7 +143,7 @@ const MainContents = ({ actives }) => {
           </SwiperSlide>
           <SwiperSlide className="perSlide" key="">
             <img
-              className="img"
+              className={active === "1" ? "img active" : "img"}
               style={{
                 height: "auto",
                 width: "100%",
@@ -161,527 +174,553 @@ const MainContents = ({ actives }) => {
           </SwiperSlide> */}
         </Swiper>
       </div>
+      <InView onChange={setinviewInfo}>
+        <div className={inviewInfo ? "Info inview" : "Info"}>
+          <div className="left">
+            <div className="wrap">
+              <h1>WHAT WE ARE AIMING TO DO FOR YOU</h1>
 
-      <div className="Info">
-        <div className="left">
-          <div className="wrap">
-            <h1>WHAT WE ARE AIMING TO DO FOR YOU</h1>
+              <h4>
+                Industry Movers Corp. (IMC) came to existence with the aim of
+                reaping the possibilities of advancing ocean shipping as an
+                industry{" "}
+              </h4>
+              <p>
+                With an initial fleet of 45 vessels, IMC is determined to
+                provide fast deliveries without delay and other premium services
+                with efficiency, accountability and reliability. Furthermore,
+                the company plans to acquire more vessels to improve currently
+                provided services and to answer the call for increasing demand
+                in the market
+              </p>
+            </div>
+          </div>
+          <div className="right" style={{ animationDelay: ".3s" }}>
+            <Swiper
+              modules={[Navigation, Pagination]}
+              slidesPerView={1}
+              loop={true}
+              pagination={{ clickable: true }}
+              style={{ height: "350px", width: "325px" }}
+              className="swiper"
+              autoplay
+            >
+              <SwiperSlide className="perSlide">
+                <div className="card">
+                  <div className="header">CORE VALUES</div>
+                  <div className="details">
+                    <p>
+                      <span>1</span>Safety
+                    </p>
 
-            <h4>
-              Industry Movers Corp. (IMC) came to existence with the aim of
-              reaping the possibilities of advancing ocean shipping as an
-              industry{" "}
-            </h4>
-            <p>
-              With an initial fleet of 45 vessels, IMC is determined to provide
-              fast deliveries without delay and other premium services with
-              efficiency, accountability and reliability. Furthermore, the
-              company plans to acquire more vessels to improve currently
-              provided services and to answer the call for increasing demand in
-              the market
-            </p>
+                    <p>
+                      <span>2</span>High Level of Accountability
+                    </p>
+
+                    <p>
+                      <span>3</span>Innovative Solutions
+                    </p>
+
+                    <p>
+                      <span>4</span>Passion
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="perSlide">
+                <div className="card">
+                  <div className="header">OUR MISSION</div>
+                  <div className="details">
+                    <p>
+                      We are a maritime and logitics company that promotes
+                      premium services to our valued customer and deals
+                      fairlywith our stakeholders in order to build a
+                      relationship that is mutually beneficial
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="perSlide">
+                <div className="card">
+                  <div className="header">OUR VISSION</div>
+                  <div className="details">
+                    <p>
+                      To be the worldwide leading maritime and logistics
+                      company, setting a premium standard; sustainable,
+                      innovative, and industrial shipping solutions
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
-        <div className="right">
-          <Swiper
-            modules={[Navigation, Pagination]}
-            slidesPerView={1}
-            loop={true}
-            pagination={{ clickable: true }}
-            style={{ height: "350px", width: "325px" }}
-            className="swiper"
-          >
-            <SwiperSlide className="perSlide">
-              <div className="card">
-                <div className="header">CORE VALUES</div>
-                <div className="details">
-                  <p>
-                    <span>1</span>Safety
-                  </p>
-
-                  <p>
-                    <span>2</span>High Level of Accountability
-                  </p>
-
-                  <p>
-                    <span>3</span>Innovative Solutions
-                  </p>
-
-                  <p>
-                    <span>4</span>Passion
-                  </p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className="perSlide">
-              <div className="card">
-                <div className="header">OUR MISSION</div>
-                <div className="details">
-                  <p>
-                    We are a maritime and logitics company that promotes premium
-                    services to our valued customer and deals fairlywith our
-                    stakeholders in order to build a relationship that is
-                    mutually beneficial
-                  </p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className="perSlide">
-              <div className="card">
-                <div className="header">OUR VISSION</div>
-                <div className="details">
-                  <p>
-                    To be the worldwide leading maritime and logistics company,
-                    setting a premium standard; sustainable, innovative, and
-                    industrial shipping solutions
-                  </p>
-                </div>
-              </div>
-            </SwiperSlide>
-          </Swiper>
-        </div>
-      </div>
-      <div className="OurServices">
-        <div className="wrap">
-          {" "}
-          <div className="card">
+      </InView>
+      <InView onChange={setinviewServe}>
+        <div className={inviewServe ? "OurServices inview" : "OurServices"}>
+          <div className="wrap">
             {" "}
-            <div className="header">
-              <h1>OUR SERVICES</h1>
+            <div className="card">
+              {" "}
+              <div className="header">
+                <h1>OUR SERVICES</h1>
+              </div>
+              <div className="details">
+                <br />
+                <p>
+                  We are offering a sea shipment services across the country
+                  with most efficient and economical cost.
+                </p>
+                <h5
+                  className="btn"
+                  onClick={() => {
+                    navigate("services");
+                  }}
+                >
+                  OUR SERVICES <BsArrowRight className="icon" />
+                </h5>
+              </div>
             </div>
-            <div className="details">
-              <br />
-              <p>
-                We are offering a sea shipment services across the country with
-                most efficient and economical cost.
-              </p>
-              <h5
-                className="btn"
+            <div
+              className="card"
+              onMouseOver={() => {
+                sethover("loose");
+              }}
+              onMouseLeave={() => {
+                sethover(false);
+              }}
+            >
+              {" "}
+              <div className="header">
+                <img src={cargo} />
+                <span>01</span>
+              </div>
+              <div className="details">
+                <h4>Loose cargo</h4>
+
+                <p>A loose cargo load, also known as an LCL,...</p>
+              </div>
+              {hover === "loose" ? (
+                <img
+                  className="float"
+                  src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231948/services/LOOSE_CARGO1_k06lbe.png"
+                  alt=""
+                />
+              ) : null}
+            </div>
+            <div
+              className="card"
+              onMouseOver={() => {
+                sethover("rolling");
+              }}
+              onMouseLeave={() => {
+                sethover(false);
+              }}
+            >
+              {" "}
+              <div className="header">
+                <img src={cargo} />
+                <span>02</span>
+              </div>
+              <div className="details">
+                <h4>Rolling Cargo</h4>
+
+                <p>
+                  IMC moves vehicles or trucksFrom the part of the origin...
+                </p>
+              </div>
+              {hover === "rolling" ? (
+                <img
+                  className="float"
+                  src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231950/services/ROLLING_CARGO_2_o6mwtw.png"
+                  alt=""
+                />
+              ) : null}
+            </div>
+            <div
+              className="card"
+              onMouseOver={() => {
+                sethover("dredging");
+              }}
+              onMouseLeave={() => {
+                sethover(false);
+              }}
+            >
+              {" "}
+              <div className="header">
+                <img src={cargo} />
+                <span>03</span>
+              </div>
+              <div className="details">
+                <h4>Dredging Works</h4>
+
+                <p>
+                  Dredging generates sufficient room to build significant
+                  bridges, dykes, and...
+                </p>
+              </div>
+              {hover === "dredging" ? (
+                <img
+                  className="float"
+                  src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231942/services/DREDGER_VESSEL_OR_DREDGING_WORKS_qezocc.jpg"
+                  alt=""
+                />
+              ) : null}
+            </div>
+            <div
+              className="card"
+              onMouseOver={() => {
+                sethover("Crane");
+              }}
+              onMouseLeave={() => {
+                sethover(false);
+              }}
+            >
+              {" "}
+              <div className="header">
+                <img src={cargo} />
+                <span>04</span>
+              </div>
+              <div className="details">
+                <h4>Crane Barge- pile driving Works</h4>
+
+                <p>When a weight is put above a pile, it releases...</p>
+              </div>
+              {hover === "Crane" ? (
+                <img
+                  className="float"
+                  src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231958/services/PILES_3_apem0v.png"
+                  alt=""
+                />
+              ) : null}
+            </div>
+            <div
+              className="card"
+              onMouseOver={() => {
+                sethover("bulks");
+              }}
+              onMouseLeave={() => {
+                sethover(false);
+              }}
+            >
+              {" "}
+              <div className="header">
+                <img src={cargo} />
+                <span>05</span>
+              </div>
+              <div className="details">
+                <h4>Delivery of Aggregates in Bulks</h4>
+
+                <p>Any construction, be a tiny structure, a road, or...</p>
+              </div>
+              {hover === "bulks" ? (
+                <img
+                  className="float"
+                  src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231849/services/AGGREGATES_1_kytwio.png"
+                  alt=""
+                />
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </InView>
+      <InView onChange={setinviewPort}>
+        <div className={inviewPort ? "OurPorts inview" : "OurPorts"}>
+          {videoPop ? (
+            <div className="video">
+              <IoMdClose
+                className="icons"
                 onClick={() => {
-                  navigate("services");
+                  setvideoPop(false);
+                }}
+              />
+              <VideoPlayer vid={videoPop} />
+            </div>
+          ) : null}
+          <div className="wrap">
+            <h1>OUR PORTS</h1>
+            <div className="cardWrap">
+              {" "}
+              <div className="card">
+                <img src={Hero1} alt="" />
+                <div className="details">
+                  <h1>HOMEPORTS</h1>
+                  <p>
+                    NCR-Manila| REGION IV-A Batangas| REGION VII - Cebu | REGION
+                    VIII - Tacloban \ REGION XII - Gen San | REGION XIII -
+                    Surigao
+                  </p>
+                  <button
+                    onClick={() => {
+                      setvideoPop(
+                        "https://res.cloudinary.com/ddk57ienn/video/upload/v1675234219/vessels/video/Homeports_rknuuu.mp4"
+                      );
+                    }}
+                  >
+                    PLAY VIDEO
+                  </button>
+                </div>
+              </div>
+              <div className="card" style={{ animationDelay: ".25s" }}>
+                <img src={Hero2} alt="" />
+                <div className="details">
+                  <h1>SHIPYARDS</h1>
+                  <p>
+                    KEPPEL SHIPYARDS| SEAFRONT SHIPYARD - BATAAN| GENSAN
+                    SHIPYARD | MBI SHIPYARD
+                  </p>
+                  <button
+                    onClick={() => {
+                      setvideoPop(
+                        "https://res.cloudinary.com/ddk57ienn/video/upload/v1675234317/vessels/video/Shipyard_uwhrkc.mp4"
+                      );
+                    }}
+                  >
+                    PLAY VIDEO
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </InView>
+      <InView onChange={setinviewFind}>
+        <div
+          className={inviewFind ? "FindYourCareer inview" : "FindYourCareer"}
+        >
+          <div className="wrap">
+            <div className="left" style={{ animationDelay: ".2s" }}>
+              {/* <video src=""></video> */}
+              {playVid === false ? (
+                <div className="thumbNail">
+                  <img src={Thumbnail} alt="" />
+                  <button
+                    onClick={() => {
+                      setplayVid(true);
+                    }}
+                  >
+                    <FaRegPlayCircle className="icon" />
+                    PLAY VIDEO
+                  </button>
+                </div>
+              ) : (
+                <iframe
+                  width="500"
+                  height="315"
+                  src="https://www.youtube.com/embed/k-frYn_SYFc?&autoplay=1"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              )}
+            </div>
+            <div className="right">
+              <div className="details">
+                <div className="header">
+                  <h1>FIND YOUR CAREER AT INDUSTRY MOVERS CORP(IMC)</h1>
+                </div>
+                <p>
+                  Logistics has always been an imFindant factor in any industry
+                  that needs transportation of products. it is the movement of
+                  tangible goods such as materials supplies, equipment and other
+                  consumables.
+                </p>
+                <div className="list">
+                  <span>
+                    <h1>MARINE SUPERINTENDENT</h1>{" "}
+                    <p>Assemblers and fabricators put together pieces...</p>
+                  </span>
+                  <span>
+                    <h1>DEPUTY TECHNICAL MANAGERT</h1>{" "}
+                    <p>
+                      Quality control inspectors examine materials and
+                      products...
+                    </p>
+                  </span>
+
+                  <h6
+                    onClick={() => {
+                      navigate("/careers");
+                    }}
+                  >
+                    SEE ALL POSITIONS
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </InView>
+      <InView onChange={setinviewLogi}>
+        <div
+          className={inviewLogi ? "LogisticBanner inview" : "LogisticBanner"}
+        >
+          <div className="wrap">
+            <h1>Logistics for the Real World</h1>
+            <p>
+              We are an integrated maritime company composed of agile and
+              experienced maritome engineers skilled in various scopes of
+              industrial work, assured plant availability, and operational
+              security
+            </p>
+            <button
+              onClick={() => {
+                navigate("/team");
+              }}
+            >
+              MEET OUR TEAM <BsArrowRight className="icon" />
+            </button>
+          </div>
+        </div>
+      </InView>
+      <InView onChange={setinviewNews}>
+        <div className={inviewNews ? "NewsUpdate inview" : "NewsUpdate"}>
+          <div className="wrap">
+            <div className="header">
+              <h1>NEWS & UPDATE</h1>
+            </div>
+            <div className="blogWrap">
+              <div className="nav">
+                {" "}
+                <button onClick={() => swiperRef.current?.slidePrev()}>
+                  <TfiArrowLeft className="icon" />
+                </button>
+                <button onClick={() => swiperRef.current?.slideNext()}>
+                  <TfiArrowRight className="icon" />
+                </button>
+              </div>
+              <Swiper
+                modules={[Navigation, Pagination]}
+                spaceBetween={30}
+                // pagination={{ clickable: true }}
+                className="swiper"
+                autoplay={{ duration: 1 }}
+                //  centeredSlides={true}
+                breakpoints={{
+                  1: { slidesPerView: 1 },
+                  768: { slidesPerView: 2 },
+                  1200: { slidesPerView: 3 },
+                }}
+                onBeforeInit={(swiper) => {
+                  swiperRef.current = swiper;
                 }}
               >
-                OUR SERVICES <BsArrowRight className="icon" />
-              </h5>
-            </div>
-          </div>
-          <div
-            className="card"
-            onMouseOver={() => {
-              sethover("loose");
-            }}
-            onMouseLeave={() => {
-              sethover(false);
-            }}
-          >
-            {" "}
-            <div className="header">
-              <img src={cargo} />
-              <span>01</span>
-            </div>
-            <div className="details">
-              <h4>Loose cargo</h4>
-
-              <p>A loose cargo load, also known as an LCL,...</p>
-            </div>
-            {hover === "loose" ? (
-              <img
-                className="float"
-                src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231948/services/LOOSE_CARGO1_k06lbe.png"
-                alt=""
-              />
-            ) : null}
-          </div>
-          <div
-            className="card"
-            onMouseOver={() => {
-              sethover("rolling");
-            }}
-            onMouseLeave={() => {
-              sethover(false);
-            }}
-          >
-            {" "}
-            <div className="header">
-              <img src={cargo} />
-              <span>02</span>
-            </div>
-            <div className="details">
-              <h4>Rolling Cargo</h4>
-
-              <p>IMC moves vehicles or trucksFrom the part of the origin...</p>
-            </div>
-            {hover === "rolling" ? (
-              <img
-                className="float"
-                src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231950/services/ROLLING_CARGO_2_o6mwtw.png"
-                alt=""
-              />
-            ) : null}
-          </div>
-          <div
-            className="card"
-            onMouseOver={() => {
-              sethover("dredging");
-            }}
-            onMouseLeave={() => {
-              sethover(false);
-            }}
-          >
-            {" "}
-            <div className="header">
-              <img src={cargo} />
-              <span>03</span>
-            </div>
-            <div className="details">
-              <h4>Dredging Works</h4>
-
-              <p>
-                Dredging generates sufficient room to build significant bridges,
-                dykes, and...
-              </p>
-            </div>
-            {hover === "dredging" ? (
-              <img
-                className="float"
-                src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231942/services/DREDGER_VESSEL_OR_DREDGING_WORKS_qezocc.jpg"
-                alt=""
-              />
-            ) : null}
-          </div>
-          <div
-            className="card"
-            onMouseOver={() => {
-              sethover("Crane");
-            }}
-            onMouseLeave={() => {
-              sethover(false);
-            }}
-          >
-            {" "}
-            <div className="header">
-              <img src={cargo} />
-              <span>04</span>
-            </div>
-            <div className="details">
-              <h4>Crane Barge- pile driving Works</h4>
-
-              <p>When a weight is put above a pile, it releases...</p>
-            </div>
-            {hover === "Crane" ? (
-              <img
-                className="float"
-                src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231958/services/PILES_3_apem0v.png"
-                alt=""
-              />
-            ) : null}
-          </div>
-          <div
-            className="card"
-            onMouseOver={() => {
-              sethover("bulks");
-            }}
-            onMouseLeave={() => {
-              sethover(false);
-            }}
-          >
-            {" "}
-            <div className="header">
-              <img src={cargo} />
-              <span>05</span>
-            </div>
-            <div className="details">
-              <h4>Delivery of Aggregates in Bulks</h4>
-
-              <p>Any construction, be a tiny structure, a road, or...</p>
-            </div>
-            {hover === "bulks" ? (
-              <img
-                className="float"
-                src="https://res.cloudinary.com/ddk57ienn/image/upload/v1675231849/services/AGGREGATES_1_kytwio.png"
-                alt=""
-              />
-            ) : null}
-          </div>
-        </div>
-      </div>
-      <div className="OurPorts">
-        {videoPop ? (
-          <div className="video">
-            <IoMdClose
-              className="icons"
-              onClick={() => {
-                setvideoPop(false);
-              }}
-            />
-            <VideoPlayer vid={videoPop} />
-          </div>
-        ) : null}
-        <div className="wrap">
-          <h1>OUR PORTS</h1>
-          <div className="cardWrap">
-            {" "}
-            <div className="card">
-              <img src={Hero1} alt="" />
-              <div className="details">
-                <h1>HOMEPORTS</h1>
-                <p>
-                  NCR-Manila| REGION IV-A Batangas| REGION VII - Cebu | REGION
-                  VIII - Tacloban \ REGION XII - Gen San | REGION XIII - Surigao
-                </p>
-                <button
-                  onClick={() => {
-                    setvideoPop(
-                      "https://res.cloudinary.com/ddk57ienn/video/upload/v1675234219/vessels/video/Homeports_rknuuu.mp4"
-                    );
-                  }}
-                >
-                  PLAY VIDEO
-                </button>
-              </div>
-            </div>
-            <div className="card">
-              <img src={Hero2} alt="" />
-              <div className="details">
-                <h1>SHIPYARDS</h1>
-                <p>
-                  KEPPEL SHIPYARDS| SEAFRONT SHIPYARD - BATAAN| GENSAN SHIPYARD
-                  | MBI SHIPYARD
-                </p>
-                <button
-                  onClick={() => {
-                    setvideoPop(
-                      "https://res.cloudinary.com/ddk57ienn/video/upload/v1675234317/vessels/video/Shipyard_uwhrkc.mp4"
-                    );
-                  }}
-                >
-                  PLAY VIDEO
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="FindYourCareer">
-        <div className="wrap">
-          <div className="left">
-            {/* <video src=""></video> */}
-            {playVid === false ? (
-              <div className="thumbNail">
-                <img src={Thumbnail} alt="" />
-                <button
-                  onClick={() => {
-                    setplayVid(true);
-                  }}
-                >
-                  <FaRegPlayCircle className="icon" />
-                  PLAY VIDEO
-                </button>
-              </div>
-            ) : (
-              <iframe
-                width="500"
-                height="315"
-                src="https://www.youtube.com/embed/k-frYn_SYFc?&autoplay=1"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            )}
-          </div>
-          <div className="right">
-            <div className="details">
-              <div className="header">
-                <h1>FIND YOUR CAREER AT INDUSTRY MOVERS CORP(IMC)</h1>
-              </div>
-              <p>
-                Logistics has always been an important factor in any industry
-                that needs transportation of products. it is the movement of
-                tangible goods such as materials supplies, equipment and other
-                consumables.
-              </p>
-              <div className="list">
-                <span>
-                  <h1>MARINE SUPERINTENDENT</h1>{" "}
-                  <p>Assemblers and fabricators put together pieces...</p>
-                </span>
-                <span>
-                  <h1>DEPUTY TECHNICAL MANAGERT</h1>{" "}
-                  <p>
-                    Quality control inspectors examine materials and products...
-                  </p>
-                </span>
-
-                <h6
-                  onClick={() => {
-                    navigate("/careers");
-                  }}
-                >
-                  SEE ALL POSITIONS
-                </h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="LogisticBanner">
-        <div className="wrap">
-          <h1>Logistics for the Real World</h1>
-          <p>
-            We are an integrated maritime company composed of agile and
-            experienced maritome engineers skilled in various scopes of
-            industrial work, assured plant availability, and operational
-            security
-          </p>
-          <button
-            onClick={() => {
-              navigate("/team");
-            }}
-          >
-            MEET OUR TEAM <BsArrowRight className="icon" />
-          </button>
-        </div>
-      </div>
-      <div className="NewsUpdate">
-        <div className="wrap">
-          <div className="header">
-            <h1>NEWS & UPDATE</h1>
-          </div>
-          <div className="blogWrap">
-            <div className="nav">
-              {" "}
-              <button onClick={() => swiperRef.current?.slidePrev()}>
-                <TfiArrowLeft className="icon" />
-              </button>
-              <button onClick={() => swiperRef.current?.slideNext()}>
-                <TfiArrowRight className="icon" />
-              </button>
-            </div>
-            <Swiper
-              modules={[Navigation, Pagination]}
-              spaceBetween={30}
-              // pagination={{ clickable: true }}
-              className="swiper"
-              autoplay={{ duration: 1 }}
-              //  centeredSlides={true}
-              breakpoints={{
-                1: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1200: { slidesPerView: 3 },
-              }}
-              onBeforeInit={(swiper) => {
-                swiperRef.current = swiper;
-              }}
-            >
-              {news.map((newsItem, i) => {
-                return (
-                  <SwiperSlide
-                    className="perSlide"
-                    style={{ width: "100%" }}
-                    key=""
-                  >
-                    <div className="card">
-                      <img src={newsItem.img} alt={newsItem.title} />
-                      <div className="date">
-                        <span>08</span>
-                        <span>FEB</span>
-                      </div>
-                      <div className="label">
-                        <h6>By {newsItem.author}</h6>
-                        <h2>{newsItem.title}</h2>
-                        <p>{newsItem.body}</p>
-                        <a href={newsItem.link}>
-                          Read More <BsArrowRight className="icon" />
-                        </a>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </div>
-        </div>
-      </div>
-      <div className="Testimonials">
-        <div className="wrap">
-          <div className="header">
-            <h1>TESTIMONIALS</h1>
-          </div>
-
-          <div className="swiperCon">
-            <div className="">
-              {" "}
-              <img src={cargo} className="left" alt="" />
-            </div>
-            <Swiper
-              modules={[Navigation, Pagination]}
-              spaceBetween={30}
-              pagination={{ clickable: true }}
-              className="swiper"
-              //  centeredSlides={true}
-              autoplay={{ duration: 1 }}
-              breakpoints={{
-                1: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                //1200: { slidesPerView: 3 },
-              }}
-              // onBeforeInit={(swiper) => {
-              //   swiperRef.current = swiper;
-              // }}
-            >
-              {testimonials.map((test, i) => {
-                return (
-                  <SwiperSlide
-                    className="perSlide"
-                    style={{ width: "100%" }}
-                    key=""
-                  >
-                    <div className="card">
-                      <div className="label">
-                        <p>{test.body}</p>
-                        <h5>{test.label},</h5>
-                        <div className="iconCon">
-                          <FaStar className="star" />
-                          <FaStar className="star" />
-                          <FaStar className="star" />
-                          <FaStar className="star" />
-                          <FaStar className="star" />
+                {news.map((newsItem, i) => {
+                  return (
+                    <SwiperSlide
+                      className="perSlide"
+                      style={{ width: "100%" }}
+                      key=""
+                    >
+                      <div className="card">
+                        <img src={newsItem.img} alt={newsItem.title} />
+                        <div className="date">
+                          <span>08</span>
+                          <span>FEB</span>
+                        </div>
+                        <div className="label">
+                          <h6>By {newsItem.author}</h6>
+                          <h2>{newsItem.title}</h2>
+                          <p>{newsItem.body}</p>
+                          <a href={newsItem.link}>
+                            Read More <BsArrowRight className="icon" />
+                          </a>
                         </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-            <div className="">
-              <img src={cargo} className="right" alt="" />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
             </div>
           </div>
         </div>
-      </div>
-      <div className="CompanyPartners">
-        <div className="wrap">
-          <h1>We work with our partners to provide project perfection</h1>
-          <div className="companies">
-            <div className="img">
-              <img src={MAC} alt="" />
+      </InView>
+      <InView onChange={setinviewTest}>
+        <div className={inviewTest ? "Testimonials inview" : "Testimonials"}>
+          <div className="wrap">
+            <div className="header">
+              <h1>TESTIMONIALS</h1>
             </div>
-            <div className="img">
-              <img src={CSC} alt="" />
-            </div>
-            <div className="img">
-              <img src={PMI} alt="" />
-            </div>
-            <div className="img">
-              <img src={Obanana} alt="" />
-            </div>
-            <div className="img">
-              <img src={MBI} alt="" />
+
+            <div className="swiperCon">
+              <div className="">
+                {" "}
+                <img src={cargo} className="left" alt="" />
+              </div>
+              <Swiper
+                modules={[Navigation, Pagination]}
+                spaceBetween={30}
+                pagination={{ clickable: true }}
+                className="swiper"
+                //  centeredSlides={true}
+                autoplay={{ duration: 1 }}
+                breakpoints={{
+                  1: { slidesPerView: 1 },
+                  768: { slidesPerView: 2 },
+                  //1200: { slidesPerView: 3 },
+                }}
+                // onBeforeInit={(swiper) => {
+                //   swiperRef.current = swiper;
+                // }}
+              >
+                {testimonials.map((test, i) => {
+                  return (
+                    <SwiperSlide
+                      className="perSlide"
+                      style={{ width: "100%" }}
+                      key=""
+                    >
+                      <div className="card">
+                        <div className="label">
+                          <p>{test.body}</p>
+                          <h5>{test.label},</h5>
+                          <div className="iconCon">
+                            <FaStar className="star" />
+                            <FaStar className="star" />
+                            <FaStar className="star" />
+                            <FaStar className="star" />
+                            <FaStar className="star" />
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+              <div className="">
+                <img src={cargo} className="right" alt="" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </InView>
+      <InView onChange={setinviewComp}>
+        <div
+          className={inviewComp ? "CompanyPartners inview" : "CompanyPartners"}
+        >
+          <div className="wrap">
+            <h1>We work with our partners to provide project perfection</h1>
+            <div className="companies">
+              <div className="img" style={{ animationDelay: ".1s" }}>
+                <img src={MAC} alt="" />
+              </div>
+              <div className="img" style={{ animationDelay: ".2s" }}>
+                <img src={CSC} alt="" />
+              </div>
+              <div className="img" style={{ animationDelay: ".3s" }}>
+                <img src={PMI} alt="" />
+              </div>
+              <div className="img" style={{ animationDelay: ".4s" }}>
+                <img src={Obanana} alt="" />
+              </div>
+              <div className="img" style={{ animationDelay: ".5s" }}>
+                <img src={MBI} alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </InView>
     </Con>
   );
 };
@@ -763,6 +802,10 @@ const Con = styled.div`
   & .backgroundImg {
     /* box-shadow: inset 0px 0px 100px 75px rgba(0, 0, 0, 0.65); */
     background-color: #1a1446;
+    & .img{
+      position: relative;
+      z-index: 10;
+    }
     & img {
       // position: absolute;
       width: 100vw;
@@ -772,6 +815,27 @@ const Con = styled.div`
       object-fit: cover;
       position: absolute;
       z-index: 10;
+      overflow: hidden;
+    }
+    & .img.active {
+      opacity: 0;
+      animation: appearhero 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)  both;
+      position: relative;
+      z-index: 30;
+      opacity: 1;
+      @keyframes appearhero {
+        0% {
+          transform: scale(1);
+        
+        }
+        30%{
+
+        }
+
+        100% {
+          transform: scale(1.2);
+        }
+      }
     }
     & .details1 {
       position: absolute;
@@ -782,6 +846,22 @@ const Con = styled.div`
       right: 10%;
       font-size: 2rem;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      animation: slide-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      animation-delay: 3.5s;
+      @keyframes slide-up {
+        0% {
+          transform: translateY(300px);
+          opacity: 0;
+        }
+        70% {
+          transform: translateY(-10px);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
       & p {
         font-size: 14px;
       }
@@ -809,6 +889,23 @@ const Con = styled.div`
       left: 10%;
       font-size: 2rem;
       word-wrap: break-word;
+      animation: slide-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      animation-delay: 1s;
+
+      @keyframes slide-up {
+        0% {
+          transform: translateY(300px);
+          opacity: 0;
+        }
+        70% {
+          transform: translateY(-10px);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
       & h1 {
         color: #1a1446;
       }
@@ -902,8 +999,30 @@ const Con = styled.div`
     padding: 3rem 0;
     width: 60%;
     margin: auto;
+    overflow: hidden;
     @media (max-width: 1680px) {
       width: 80%;
+    }
+
+    &.inview {
+      & .left,
+      .right {
+        animation: slide-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        @keyframes slide-up {
+          0% {
+            transform: translateY(300px);
+            opacity: 0;
+          }
+          70% {
+            transform: translateY(-10px);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      }
     }
     & .left {
       max-width: 600px;
@@ -1023,6 +1142,26 @@ const Con = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    &.inview {
+      & .wrap {
+        animation: slide-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        @keyframes slide-up {
+          0% {
+            transform: translateY(300px);
+            opacity: 0;
+          }
+          70% {
+            transform: translateY(-10px);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      }
+    }
     & .wrap {
       display: flex;
       align-items: center;
@@ -1115,6 +1254,25 @@ const Con = styled.div`
   }
   & .OurPorts {
     padding: 3rem 0;
+    &.inview {
+      & .card {
+        animation: slide-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        @keyframes slide-up {
+          0% {
+            transform: translateY(300px);
+            opacity: 0;
+          }
+          70% {
+            transform: translateY(-10px);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      }
+    }
     & .wrap {
       width: 70%;
       margin: auto;
@@ -1126,6 +1284,7 @@ const Con = styled.div`
       @media (max-width: 828px) {
         width: 95%;
       }
+
       h1 {
         font-size: 1.5rem;
         margin-left: 2rem;
@@ -1186,6 +1345,47 @@ const Con = styled.div`
   }
   & .FindYourCareer {
     padding: 3rem 0;
+    overflow: hidden;
+    &.inview {
+      & .left,
+      .right {
+        animation: slide-up 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        @keyframes slide-up {
+          0% {
+            transform: translateY(300px);
+            opacity: 0;
+          }
+          70% {
+            transform: translateY(-10px);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      }
+    }
+    &.inview {
+      & .left,
+      .right {
+        animation: slide-up 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        @keyframes slide-up {
+          0% {
+            transform: translateY(300px);
+            opacity: 0;
+          }
+          70% {
+            transform: translateY(-10px);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      }
+    }
     & .wrap {
       width: 80%;
       margin: auto;
@@ -1263,6 +1463,23 @@ const Con = styled.div`
     padding: 3rem 0;
     display: flex;
     align-items: center;
+    &.inview {
+      & .wrap {
+        animation: appear 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        @keyframes appear {
+          0% {
+            opacity: 0;
+          }
+          70% {
+            transform: translateY(-10px);
+            opacity: 1;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+      }
+    }
     & .wrap {
       display: flex;
       flex-direction: column;
@@ -1291,9 +1508,8 @@ const Con = styled.div`
         margin-top: 1rem;
         display: flex;
         cursor: pointer;
-        &:hover{
-        background-color: #a87112;
-
+        &:hover {
+          background-color: #a87112;
         }
         & .icon {
           font-size: 1rem;
@@ -1355,21 +1571,21 @@ const Con = styled.div`
           & .card {
             border: 1px solid #eee;
             width: 300px;
-            &:hover{
-              & .icon{
+            &:hover {
+              & .icon {
                 animation: side-slide 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-                    infinite both;
-                  @keyframes side-slide {
-                    0% {
-                      transform: translate(0px);
-                    }
-                    50% {
-                      transform: translate(10px);
-                    }
-                    100% {
-                      transform: translate(0px);
-                    }
+                  infinite both;
+                @keyframes side-slide {
+                  0% {
+                    transform: translate(0px);
                   }
+                  50% {
+                    transform: translate(10px);
+                  }
+                  100% {
+                    transform: translate(0px);
+                  }
+                }
               }
             }
             & img {
@@ -1421,7 +1637,6 @@ const Con = styled.div`
                 color: #1a1446;
                 & .icon {
                   margin-left: 0.5rem;
-                 
                 }
               }
             }
@@ -1557,6 +1772,23 @@ const Con = styled.div`
   }
   & .CompanyPartners {
     padding: 3rem 0;
+    &.inview {
+      & .img {
+        animation: appear 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        @keyframes appear {
+          0% {
+            opacity: 0;
+          }
+          70% {
+            transform: translateY(-10px);
+            opacity: 1;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+      }
+    }
     & .wrap {
       width: 70%;
       margin: auto;

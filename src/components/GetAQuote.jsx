@@ -99,12 +99,12 @@ const GetAQuote = () => {
                 </option>
 
                 <option value="Land Craft Tank(LCT)">
-                  Land Craft Tank(LCT)
+                  LAND CRAFT TANK(LCT)
                 </option>
                 <option value="TUGBOAT">TUGBOAT</option>
                 <option value="BARGE">BARGE</option>
                 <option value="CARGOI SHIP, DEDGER AND BULK CARRIER">
-                  CARGOI SHIP, DEDGER AND BULK CARRIER
+                  CARGO SHIP, DEDGER AND BULK CARRIER
                 </option>
               </select>
             </div>

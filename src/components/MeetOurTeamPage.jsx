@@ -6,10 +6,10 @@ import Hero2 from "../assets/hero-section/17 edited.jpg";
 
 const member = [
   {
-    name: "",
+    name: "Atty. Greta Almina C. Garcia",
     img: "https://res.cloudinary.com/ddk57ienn/image/upload/q_43/v1675230976/BEHIND%20OUR%20SUCCESS/Atty._Greta_x7ynhe.png",
-    pos: "",
-    qoute: "",
+    pos: "Legal Manager ",
+    qoute: "In everything you do, put your whole heart into it.",
   },
   {
     name: "Capt. Ivan Evangelio",
@@ -25,10 +25,10 @@ const member = [
     qoute: "If you're going to do something, do it well.",
   },
   {
-    name: "",
+    name: "Mina M. Rafer",
     img: "https://res.cloudinary.com/ddk57ienn/image/upload/v1675230973/BEHIND%20OUR%20SUCCESS/Ma_am_Mina_umapqg.png",
-    pos: "",
-    qoute: "",
+    pos: "Crewing Manager",
+    qoute: " To be successful, the first thing to do is fall in love with your work. “ Do what you LOVE and LOVE what you do ",
   },
   {
     name: "Engr. Efren Cruz",
@@ -38,16 +38,16 @@ const member = [
       "Our lives only get better when we take risks. Being honest is the first and most challenging risk we must take.",
   },
   {
-    name: "",
+    name: "Engr. Glenn Kristoffer M. Sunguad",
     img: "https://res.cloudinary.com/ddk57ienn/image/upload/v1675230968/BEHIND%20OUR%20SUCCESS/Mr._Glenn_bu65ax.png",
-    pos: "",
-    qoute: "",
+    pos: " Deputy Technical Manager",
+    qoute: "If you work for a man in heaven's name work for him, speak well of him, and stand by the institution which he represents. Remember, an ounce of loyalty is worth a pound of cleverness",
   },
   {
-    name: "",
+    name: "Irene L. Sarinas",
     img: "https://res.cloudinary.com/ddk57ienn/image/upload/v1675230983/BEHIND%20OUR%20SUCCESS/Ms._Irene_ss1sle.png",
-    pos: "",
-    qoute: "",
+    pos: "HR Admin Manager",
+    qoute: "I’m a firm believer in hiring passionate employee will do better and stay longer than an employee motivated by compensation. Hire for passion. Next will be skills.",
   },
   {
     name: "Joan Chua",

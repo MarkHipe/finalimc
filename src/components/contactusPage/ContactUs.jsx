@@ -86,8 +86,9 @@ const ContactUs = () => {
         <div className="header">
           <h1>QUICK CONTACT</h1>
           <h5>
-            You have questions? Don't hesitate to contact us, Our support team
-            here to help you by 24/7.
+            Do you have questions? Speak with a professional, knowledgeable
+            dispatch representative about your requirements and to arrange your
+            delivery.
           </h5>
         </div>
         <div className="contactWrap">

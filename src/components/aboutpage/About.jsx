@@ -12,7 +12,7 @@ import IMC from "../../assets/IMC.png";
 import { IoDiamond } from "react-icons/io5";
 import CountUp from "react-countup";
 import { InView } from "react-intersection-observer";
-import { GrUserWorker } from "react-icons/gr";
+import { MdMiscellaneousServices } from "react-icons/md";
 import SwiperCore, {
   Navigation,
   Pagination,
@@ -68,7 +68,8 @@ const About = () => {
   var speed = 10;
   const [inview, setinview] = useState(false);
   const top = useRef(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [show, setshow] = useState("services");
   useEffect(() => {
     if (top && top.current) {
       const executeScroll = (top) =>
@@ -180,16 +181,20 @@ const About = () => {
             <h1>INDUSTRY MOVERS CORP. (IMC)</h1>
             <div className="boxWrap">
               {" "}
-              <div className="box">
-                <GiBullseye className="icon" />
+              <div className={show==="services"?"box active":"box"} onClick={()=>{setshow("services")}}>
+                <MdMiscellaneousServices className="icon"  />
+                Our Services
+              </div>
+              <div className={show==="mission"?"box active":"box"} onClick={()=>{setshow("mission")}}>
+                <GiBullseye className="icon"  />
                 Our Mission
               </div>
-              <div className="box">
+              <div className={show==="vision"?"box active":"box"} onClick={()=>{setshow("vision")}}>
                 {" "}
                 <AiFillEye className="icon" />
                 Our Vision
               </div>{" "}
-              <div className="box">
+              <div className={show==="core"?"box active":"box"}  onClick={()=>{setshow("core")}}>
                 <IoDiamond className="icon" />
                 Core Values
               </div>
@@ -199,25 +204,82 @@ const About = () => {
         <div className="right">
           <img src={Hero2} alt="" />
           <div className="triangle"></div>
-          <div className="card">
-            <div className="header">
-              <h3>INDUSTRY MOVERS CORP. (IMC)</h3>
+          {show === "services" && (
+            <div className="card">
+              <div className="header">
+                <h3>INDUSTRY MOVERS CORP. (IMC)</h3>
+              </div>
+              <div className="details">
+                <p>
+                  Industry Movers Corp. (IMC) came to existence with the aim of
+                  reaping the possiblities of advancing ocean shipping as an
+                  industry.
+                  <br />
+                  With an initial fleet of 45 vessels. IMC is determined to
+                  provide fast deliveries without delay and the the other
+                  premium servies with efficiency, accountability and
+                  reliability.
+                </p>
+                <h4>
+                  OUR SERVICES <BsArrowRight />
+                </h4>
+              </div>
             </div>
-            <div className="details">
-              <p>
-                Industry Movers Corp. (IMC) came to existence with the aim of
-                reaping the possiblities of advancing ocean shipping as an
-                industry.
-                <br />
-                With an initial fleet of 45 vessels. IMC is determined to
-                provide fast deliveries without delay and the the other premium
-                servies with efficiency, accountability and reliability.
-              </p>
-              <h4>
-                OUR SERVICES <BsArrowRight />
-              </h4>
+          )}
+          {show === "vision" && (
+            <div className="card">
+              <div className="header">
+                <h3>OUR VISION</h3>
+              </div>
+              <div className="details">
+                <p>
+                  To be the worldwide leading maritime and logistics company,
+                  setting a premium standard; sustainable, innovative, and
+                  industrial shipping solutions
+                </p>
+              </div>
             </div>
-          </div>
+          )}
+          {show === "mission" && (
+            <div className="card">
+              <div className="header">
+                <h3>OUR MISSION</h3>
+              </div>
+              <div className="details">
+                <p>
+                  We are a maritime and logitics company that promotes premium
+                  services to our valued customer and deals fairlywith our
+                  stakeholders in order to build a relationship that is mutually
+                  beneficial
+                </p>
+              </div>
+            </div>
+          )}
+          {show === "core" && (
+            <div className="card">
+              <div className="header">
+                <h3>OUR MISSION</h3>
+              </div>
+
+              <div className="details">
+                <p>
+                  <span>1</span>Safety
+                </p>
+
+                <p>
+                  <span>2</span>High Level of Accountability
+                </p>
+
+                <p>
+                  <span>3</span>Innovative Solutions
+                </p>
+
+                <p>
+                  <span>4</span>Passion
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="milestone">
@@ -233,7 +295,7 @@ const About = () => {
           //   pagination={{ clickable: true }}
           centeredSlides={true}
           // navigation
-          autoplay={{duration:2.5}}
+          autoplay={{ duration: 2.5 }}
           style={{ height: "auto", width: "auto" }}
           className="swiper"
           onSlideChange={(swiper) => {
@@ -273,7 +335,7 @@ const About = () => {
           //   pagination={{ clickable: true }}
           centeredSlides={true}
           // navigation
-          autoplay={{duration:1}}
+          autoplay={{ duration: 1 }}
           style={{ height: "auto", width: "auto" }}
           className="swipers"
           onBeforeInit={(swiper) => {
@@ -388,7 +450,11 @@ const About = () => {
       </div>
       <div className="banner">
         <h4>" LOGISTICS FOR THE REAL WORLD "</h4>
-        <span onClick={()=>{navigate("/contactus")}}>
+        <span
+          onClick={() => {
+            navigate("/contactus");
+          }}
+        >
           MAKE AN APPOINTMENT <BsArrowRight className="icon" />
         </span>
       </div>
@@ -497,7 +563,7 @@ const Con = styled.div`
         width: 400px;
       }
       & .detail {
-        background-color: #c78b22;
+        background-color: #cfb53b;
         padding: 1rem;
         margin-top: -0.5rem;
         & h3 {
@@ -598,7 +664,7 @@ const Con = styled.div`
       right: 0;
       & .wrapper {
         position: relative;
-        width: 400px;
+        width: 500px;
         right: 0;
         display: flex;
         flex-direction: column;
@@ -625,6 +691,14 @@ const Con = styled.div`
             margin: 10px;
             font-size: 13px;
             font-weight: 600;
+            cursor: pointer;
+            &.active{
+              background-color: #c78b22;
+              color: #ffff;
+              & .icon{
+                color: #ffff;
+              }
+            }
             & .icon {
               font-size: 30px;
               color: #a7a7a7;
@@ -674,6 +748,10 @@ const Con = styled.div`
         background-color: #fff;
         width: 210px;
         left: 5rem;
+        min-height: 250px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
         padding: 1rem;
         /* position: relative; */
         z-index: 5;
@@ -699,6 +777,8 @@ const Con = styled.div`
         }
         & .details {
           padding: 1rem 0;
+          display: flex;
+          flex-direction: column;
           padding-bottom: 0;
           & p {
             font-size: 11px;
@@ -708,7 +788,15 @@ const Con = styled.div`
             @media (max-width: 915px) {
               color: #e0e0e0;
             }
+
+            & span {
+              color: #c78b22;
+              font-weight: 600;
+              font-size: 1rem;
+              margin-right: 10px;
+            }
           }
+
           & h4 {
             font-size: 13px;
             text-align: left;
